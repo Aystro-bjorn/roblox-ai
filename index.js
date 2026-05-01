@@ -17,8 +17,8 @@ app.post('/ask', async (req, res) => {
         const reply = response.data.candidates[0].content.parts[0].text;
         res.json({ reply });
     } catch (error) {
-        console.error(error.response?.data || error.message);
-        res.status(500).json({ error: 'Something went wrong' });
+        console.error(JSON.stringify(error.response?.data));
+        res.status(500).json({ error: error.response?.data || error.message });
     }
 });
 
